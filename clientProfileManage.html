@@ -25,7 +25,7 @@
                 <input type="text" id="address1" name="address1" maxlength="100" required="required"><br>
                 <br>
                 <label for="address2">Address 2 :</label>
-                <input type="text" id="address2" name="address2" maxlength="100" value="apartment, suite or space #"><br>
+                <input type="text" id="address2" name="address2" maxlength="100" onfocus="this.value=''" value="apartment, suite or space #"><br>
                 <br>
                 <label for="city">*City :</label>
                 <input type="text" id="city" name="city" maxlength="100" required="required"><br>
@@ -86,7 +86,7 @@
                 </select>
                 <br><br>
                 <label for="zipcode">*Zipcode :</label>
-                <input type="text" id="zipcode" pattern="[0-9]*" required="required"><br><br>
+                <input type="text" id="zipcode" pattern="[0-9]*" required="required" minlength="5" maxlength="9"><br><br>
                 <input type="submit" value="Submit">
 
             </form>
