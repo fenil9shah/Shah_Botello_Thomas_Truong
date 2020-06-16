@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Fuel Quote</title>
+    <link rel="stylesheet" href="css/fuel_quote.css">
+</head>
+
+<body>
+    <form class="FormBody">
+        <header>
+            <div class="Header">
+                FUEL QUOTE FORM
+            </div>
+        </header>
+    
+        <div class="SectionInput">
+            <div class="Gallons">                  
+                    Gallons Requested:
+                    <input type="number" name="txtGallon_requested" placeholder="0.00" onfocus="this.placeholder = ''" onblur="this.placeholder = '0.00'">
+            </div>
+
+            <div class="Address">
+                Delivery Address:
+                <input type="text" style="width: 200px;" name="txtDeliverry_address" placeholder="Delivery address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Delivery address'">
+            </div>
+
+            <div class="Delivery">
+                Delivery Date:
+                <input type="date" name="txtDelivery_date">
+                
+            </div>
+
+            <div class="Suggested">
+                Suggested Price:
+                <input type="text" name="txtSuggested_price" placeholder="Suggested price" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Suggested price'">
+                
+            </div>
+
+            <div class="Total_input">
+                Total Amount Due:
+                <input type="text" name="txtTotal_due" placeholder="Total amount due" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Total amount due'">
+                
+            </div>
+
+            <div class="Buttons">
+                <button class="btnSubmit">Submit</button>
+                <button class="btnReset" type="reset" value="submit">Reset</button>
+
+            </div>  
+        </div>
+    </form>    
+</body>
+
+</html>
