@@ -11,43 +11,29 @@
 
 
     </header>
-
     <div class="centerBox">
-        <div class="registerTitle">Registration Page</div>
-        <div class="UsernameTitle">
-            Create New Username:
-            <div class="usernameInput">
-                <input type="text" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
-            </div>
+        <div class="profileTitle">
+            Create Profile
         </div>
+        <div class="registerForm">
+            <form action="">
+                <label for="createUserN">Create New Username :</label>
+                <input type="text" id="createUserN" name="createUserN" required="required"><br>
+                <br>
+                <label for="pass1">Create New Password :</label>
+                <input type="password" id="pass1" name="pass1" minlength="6" required="required" placeholder="Minimum length: 6" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Minimum length: 6'"><br>
+                <br>
+                <label for="pass2">Confirm Password :</label>
+                <input type="password" id="pass2" name="pass2" minlength="6" required="required" placeholder="Password should match" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'"><br>
+                <br>
+                <input type="submit" value="Submit">
 
 
-        <div class="PasswordTitle">
-            Create New Password:
-            <div class="passwordInput">
-                <input type="password" minlength="6" name="password" placeholder="Minimum length: 6" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Minimum length: 6'">
-            </div>
+
+
+            </form>
         </div>
-
-        <div class="PasswordTitle">
-            Confirm Password:
-            <div class="passwordInput">
-                <input type="password" minlength="6" name="createPassword" placeholder="Password should match" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-            </div>
-        </div>
-
-        <div class="submitB">
-            <button class="submitBu">Submit</button>
-
-        </div>
-
-
-
     </div>
-
-
 </body>
-
-
 
 </html>
