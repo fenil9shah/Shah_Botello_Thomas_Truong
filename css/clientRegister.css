@@ -19,38 +19,13 @@ body {
     border-radius: 100px;
 }
 
-.registerTitle {
+.profileTitle {
     font-size: 65;
     text-align: center;
     margin-top: 50px;
 }
 
-.usernameTitle {
-    font-size: 25;
-    padding: 10px;
-}
-
-.usernameInput {
-    padding-top: 10px
-}
-
-.passwordTitle {
-    font-size: 25;
-    padding: 10px;
-}
-
-.passwordInput {
-    padding-top: 10px;
-}
-
-.submitB button {
-    transition-duration: 0.4s;
-    background-color: rgb(42, 114, 102);
-    cursor: pointer;
-    border: solid rgb(42, 114, 102);
-    color: white;
-    border-radius: 20px;
-    outline: none;
-    padding: 5px 12px 5px 10px;
-    text-align: center;
+.registerForm {
+    padding: 15px;
+    text-align: center
 }
