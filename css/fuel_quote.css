@@ -32,36 +32,37 @@ body{
 
 .Gallons{
     font-size: 25;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
 .Address{
     font-size: 25;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    height: 50px;
 }
 
 .Delivery{
     font-size: 25;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
 .Suggested{
     font-size: 25;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
 .Total_input{
     font-size: 25;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
 .SectionInput{
-    padding: 50px;
+    padding: 40px;
     text-align: center;
 }
 
