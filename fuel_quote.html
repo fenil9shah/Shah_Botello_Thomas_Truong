@@ -16,7 +16,7 @@
         <div class="SectionInput">
             <div class="Gallons">                  
                     Gallons Requested:
-                    <input type="number" size="16" id="txtGallon_requested" name="txtGallon_requested" min="0" placeholder="0.00" onfocus="this.placeholder = ''" onblur="calculateTotal()">
+                    <input type="number" size="16" id="txtGallon_requested" name="txtGallon_requested" min="0" placeholder="0.00" onfocus="this.placeholder = ''" onblur="calculateTotal()" required>
                     <script>
                         function calculateTotal(){
                             document.getElementById("txtTotal_due").value = document.getElementById("txtGallon_requested").value * document.getElementById("txtSuggested_price").value;
