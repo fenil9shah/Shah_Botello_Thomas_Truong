@@ -3,6 +3,21 @@
 <head>
     <title>Test Website: client Registration</title>
     <link rel="stylesheet" href="css/clientRegister.css">
+    <script>
+        //function to check if the entered password match each other or not.
+        function checkPassword(form) {
+            pass1 = form.pass1.value;
+            pass2 = form.pass2.value;
+
+            if (pass1 != pass2) {
+                alert("Password did not match")
+                return false;
+            } else {
+                alert("Password matched")
+                return true;
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -16,7 +31,7 @@
             Create Profile
         </div>
         <div class="registerForm">
-            <form action="">
+            <form onSubmit="return checkPassword(this)" action="">
                 <label for="createUserN">Create New Username :</label>
                 <input type="text" id="createUserN" name="createUserN" required="required"><br>
                 <br>
