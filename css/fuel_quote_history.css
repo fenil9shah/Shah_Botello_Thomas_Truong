@@ -6,24 +6,24 @@
 }
 
 table{
-    border: 1px solid black;
+    border: 1px solid #000;
     border-collapse: collapse;
     width: 100%;
 }
 
 td, th{
-    border: 1px solid #dddddd;
+    border: 1px solid #000;
     text-align: left;
     padding: 8px;
 }
 
-tr:nth-child(even) {
-  background-color: #f0f8ff;
+tr:nth-child(odd) {
+  background-color: rgb(160,189,56);
 }
 
 h1{
     padding: 20px;
-    background: #4682b4;
-    color: white;
+    background-color: rgb(160, 189, 56);
+    color: black;
     font-size: 25px;
 }
