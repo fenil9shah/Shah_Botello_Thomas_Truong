@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>Fuel Quote</title>
+    <link rel="stylesheet" href="styles/fuel_quote.css">
+</head>
+
+<body>
+    <div class= "logoutLink">
+        <a href="logout.php">Logout</a>
+    </div>
+
+    <form class="FormBody">
+        <header>
+            <div class="Header">
+                FUEL QUOTE FORM
+            </div>
+        </header>
+    
+        <div class="SectionInput">
+            <div class="Gallons">                  
+                    Gallons Requested:
+                    <input type="number" size="16" id="txtGallon_requested" name="txtGallon_requested" min="0" placeholder="0.00" onfocus="this.placeholder = ''" onblur="calculateTotal()" required>
+                    <script>
+                        function calculateTotal(){
+                            document.getElementById("txtTotal_due").value = document.getElementById("txtGallon_requested").value * document.getElementById("txtSuggested_price").value;
+                           
+                        }
+                    </script>
+            </div>
+
+            <div class="Address">
+                Delivery Address:
+                <textarea type="text" style="width: 200px;" name="txtDeliverry_address" placeholder="123 streeet 1, Anywhere, US, 77212" cols="40" rows="3" readonly></textarea>
+            </div>
+
+            <div class="Delivery">
+                Delivery Date:
+                <input type="date" id="txtDelivery_date">
+                
+            </div>
+
+            <div class="Suggested">
+                Suggested Price:
+                <input type="text" id="txtSuggested_price" name="txtSuggested_price" value="2" readonly>
+                
+            </div>
+
+            <div class="Total_input">
+                Total Amount Due:
+                <input type="text" id="txtTotal_due" name="txtTotal_due" value="" readonly>                
+            </div>
+
+            <div class="Buttons">
+                <button name="btnSubmit">Submit</button>
+                <button name="btnReset" type="reset" value="submit">Reset</button>
+
+            </div>  
+        </div>
+    </form>    
+</body>
+
+</html>
