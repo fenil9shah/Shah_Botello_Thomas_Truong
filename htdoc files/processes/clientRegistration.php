@@ -10,7 +10,7 @@
     }
     if($_POST['pass1'] != $_POST['pass2'])
     {
-        $error = "Password doesnot match";
+        $error = "Password does not match";
         echo "<script type='text/javascript'>alert('Password doesnot match');window.location='../clientRegister.php';</script>";
         exit();
     }
@@ -45,8 +45,7 @@
     }
     
     // after checking everything is fine, insert into the database: username and password.
-    $result1 = "INSERT INTO users (email, password) 
-    VALUES ($email, $password1)";
+    $result1 = "INSERT INTO `users`(`email`, `password`) VALUES ('$email','$password1')";
     if ($con->query($result1) === TRUE) {
         echo "New record created successfully";
       } else {
