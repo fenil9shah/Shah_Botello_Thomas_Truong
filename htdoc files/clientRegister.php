@@ -1,6 +1,6 @@
 <?php
      error_reporting(0);
-     session_start();
+     //session_start();
  
      $con = mysqli_connect("localhost", "root", "", "test");
          if(!$con)
@@ -8,7 +8,7 @@
              die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
          }
  
-     $user_check = $_SESSION['user'];
+     /*$user_check = $_SESSION['user'];
  
      $ses_sql = mysqli_query($con, "SELECT * FROM `users` WHERE email = '$user_check'");
      $row = mysqli_fetch_array($ses_sql);
@@ -20,7 +20,7 @@
              exit();
          }
          header('location: fuel_quote.php');
-     }
+     }*/
 ?>
 
 <html>
@@ -38,8 +38,7 @@
                 alert("Password did not match")
                 return false;
             } else {
-                alert("Password matched")
-                return true;
+                 return true;
             }
         }
     </script>
@@ -56,10 +55,10 @@
             Registration
         </div>
         <div class="registerForm">
-            <form onSubmit="return checkPassword(this)" action="/processes/clientRegistration.php" method= "POST">
+            <form action="/processes/clientRegistration.php" method= "POST">
                 <br>
                 <label for="createUserN">Create New Username :</label>
-                <input type="text" id="createUserN" name="createUserN" required="required"><br>
+                <input type="email" id="createUserN" name="createUserN" required="required" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your email'"><br>
                 <br>
                 <label for="pass1">Create New Password :</label>
                 <input type="password" id="pass1" name="pass1" minlength="6" required="required" placeholder="Minimum length: 6" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Minimum length: 6'"><br>
