@@ -42,15 +42,17 @@
     {
         $error = "Username already exists";
         echo "<script type='text/javascript'>alert('User name already exists. try different one.');window.location = '../clientRegister.php';</script>";
+        exit();
     }
-    
-    // after checking everything is fine, insert into the database: username and password.
-    $result1 = "INSERT INTO `users`(`email`, `password`) VALUES ('$email','$password1')";
-    if ($con->query($result1) === TRUE) {
-        echo "New record created successfully";
-      } else {
-        echo "Error: " . $result1 . "<br>" . $conn->error;
-      }
+    else{
+        // after checking everything is fine, insert into the database: username and password.
+        $result1 = "INSERT INTO `users`(`email`, `password`) VALUES ('$email','$password1')";
+        if ($con->query($result1) === TRUE) {
+            echo "<script type='text/javascript'>alert('New record created');window.location = '../login.php';</script>";
+        } else {
+            echo "Error: " . $result1 . "<br>" . $conn->error;
+        }
+    }
     /*if(empty($result1)){
         //Could not implement to database so send back to registration
         session_destroy();
