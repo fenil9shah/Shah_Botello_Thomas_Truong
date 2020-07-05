@@ -142,5 +142,5 @@
             return $this->gallonsRequested * $this->suggestedPricePerGallon;
         }
     }
-    phpinfo();
+    //phpinfo();
 ?>
