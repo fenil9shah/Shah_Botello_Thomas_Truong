@@ -1,68 +1,15 @@
 <?php
-
-    $con = mysqli_connect('localhost','root','','test') or die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
-    
-    //echo 'success';
-    
-    error_reporting(0);
     session_start();
+    include_once 'processes/fuel_quote_controller.php';
+    
+    //init classes
+    $user = new User();
+    $f_quote = new Fuel_quote();
 
-    //hard code for user id:
-    $user_id = 2;
 
-    //query to pull data of user
-    $userID_query = mysqli_query($con,"SELECT id, fullName, addr1, city, 'state', zipcode FROM users WHERE id = $user_id");
-    //get data of user from users table
-    foreach($userID_query as $urow){
-        //echo "inside foreach of users" . $urow["fullName"];
-        $username = $urow["fullName"];
-        $addr = $urow["addr1"] . $urow["city"] . $urow["state"] . $urow["zipcode"];
-        //echo $username;  
-    }
+    //catch method POST
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-    //Pricing module to calculate suggested price and total amount due
-    class PricingModule{
-        private $client;
-        private $clientHistory;
-        private $pricePerGallon = 1.50;
-        private $locationFactor;
-        private $rateHistoryFactor;
-        private $gallonsRequestedFactor;
-        private $companyProfitFactor;
-        public $gallonsRequested;
-        private $deliveryRequested;
-        private $deliveryAddress;
-        private $outOfState;
-    
-        private $test;
-    
-        public $companyProfitFactorPb = 0.10;//==========================conflict with line 30 so I added Pb at the end as public
-    
-        public function setLocationFactor(){
-            $this->outOfState = ($this->client->state != "TX") ? true : false;
-            $this->locationFactor = ($this->outOfState) ? 0.04 : 0.02;
-        }
-    
-        public function setHistoryFactor(){
-            $this->rateHistoryFactor = (!empty($this->clientHistory)) ? 0.01 : 0;
-        }
-    
-        public function setGallonRequestedFactor(){
-            $this->gallonsRequestedFactor = (($this->gallonsRequested) > 1000) ? 0.02 : 0.03;
-        }
-    
-        public function margin(){
-            ($this->locationFactor - $this->rateHistoryFactor + $this->gallonsRequestedFactor + $this->companyProfitFactor) * $this->pricePerGallon;
-        }
-    
-        //suggested price = price per gallon + margin
-        public function suggestedPricePerGallon(){
-            return $this->pricePerGallon + $this->margin;
-        }
-    
-        public function totalAmountDue(){
-            return $this->gallonsRequested * $this->suggestedPricePerGallon;
-        }
     }
 ?>
 
@@ -78,7 +25,7 @@
         <a href="logout.php">Logout</a>
     </div>
     <div  class="FormBody">
-        <form action="processes/fuel_code_controller.php" method="POST">
+        <form action="" method="POST">
             <header>
                 <div class="Header">
                     FUEL QUOTE FORM
@@ -88,9 +35,8 @@
             <div class="SectionInput">
                 <div class="Gallons">
                     User ID:
-                    <?php
-                        echo "<input type='number' id='txtUserID' name='txtUserID' value='" . $user_id . "' readonly>";
-                    ?>
+                    <input type='number' id='txtUserID' name='txtUserID' value="2" readonly>
+                    
                 </div>
                 <div class="Gallons">                  
                         Gallons Requested:
@@ -105,7 +51,8 @@
                 <div class="Address">
                     Delivery Address:
                     <?php 
-                        echo "<textarea type='text' style='width: 200px;' id='txtDeliverry_address' name='txtDeliverry_address' placeholder='" . $addr . "' cols='40' rows='3' readonly></textarea>";
+                        $user = new User();
+                        echo "<textarea type='text' style='width: 200px;' id='txtDeliverry_address' name='txtDeliverry_address' placeholder='" . $user->get_user_address(2) . "' cols='40' rows='3' readonly></textarea>";
                     ?>
                     
                 </div>
@@ -145,7 +92,3 @@
     
 </body>
 </html>
-
-<?php
-    mysqli_close($con);
-?>
