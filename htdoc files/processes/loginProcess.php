@@ -1,30 +1,25 @@
 <?php
-    error_reporting(0);
     session_start();
-
-
-    if (empty($_POST['username']) || empty($_POST['password'])) {
-        $error = "Username or Password is invalid";
-        echo "<script type='text/javascript'>alert('Please enter both email and password');window.location='../login.php';</script>";
-        exit();
+    include_once 'class.php';
+    $user = new User();
+    if($user->session()){
+        header("location: clientProfileManage.php");
     }
 
-    $email = $_POST['username'];
-    $password = $_POST['password'];
-
-    //prevents mysql injections
-    // $email = stripcslashes($email);
-    // $password = stripcslashes($password);
-    // $email = mysqli_real_escape_string($email);
-    // $password = mysqli_real_escape_string($password);
-
-    $con = mysqli_connect("localhost", "root", "", "test");
-    if(!$con)
-    {
-        die('Connect Error (' . mysqli_connect_errno() . ') '. mysqli_connect_error());
+    $user = new User();
+    if($_SERVER["REQUEST_METHOD"]== "POST"){
+        $login = $user->login($_REQUEST['email'], $_REQUEST['password']);
+        if($login){
+            header("location:clientProfileManage.php");
+        }
+        else{
+            echo "Login failed!";
+        }
     }
+
+
     
-    $result = mysqli_query($con, "SELECT * FROM `users` WHERE email = '$email' AND password = '$password'");
+   /* $result = mysqli_query($con, "SELECT * FROM `users` WHERE email = '$email' AND password = '$password'");
                 
     $row = mysqli_fetch_array($result);
     

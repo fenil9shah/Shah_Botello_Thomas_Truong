@@ -60,12 +60,37 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Table structure for fuel quote table
+--
+CREATE TABLE `fuel_quotes` (
+  `userid` int(6) NOT NULL,
+  `id` int(6) NOT NULL,
+  `gallons_requested` int(15) NOT NULL,
+  `delivery_date` date DEFAULT NULL,
+  `suggested_price` int DEFAULT NULL,
+  `total_amount_due` int DEFAULT NULL,
+  `created_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `fullName`, `addr1`, `addr2`, `city`, `state`, `zipcode`) VALUES
 (2, 'admin@admin.test', 'test12345', 'The Admin Guy', '12357 Adminland', '', 'Earth', 'AL', 45681),
 (3, 'test@test.com', '12345', 'testman', '1234156swq', '', '0', '0', 78945);
+
+--
+-- Dumping data for table fuel_quotes
+--
+
+INSERT INTO `fuel_quotes`(`userid`, `id`, `gallons_requested`, `delivery_date`, `suggested_price`, `total_amount_due`, `created_date`)
+VALUES
+('2','1','1000','2020/08/01','60','60000','2020/02/04'),
+('2','2','2000','2020/09/01','50','100000','2020/06/01'),
+('3','3','3000','2020/10/01','40','120000','2020/01/01'),
+('3','4','4000','2020/11/01','90','360000','2020/07/04');
+
 
 --
 -- Indexes for dumped tables
@@ -78,6 +103,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `fuel_quotes`
+--
+ALTER TABLE `fuel_quotes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -86,6 +117,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ 
+ --
+-- AUTO_INCREMENT for table `fuel_quotes`
+--
+ALTER TABLE `fuel_quotes`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
