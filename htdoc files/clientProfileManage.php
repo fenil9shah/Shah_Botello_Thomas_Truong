@@ -14,11 +14,9 @@
         if(empty($loginSession)){
             header('location: login.php');
            // echo "<script type='text/javascript'>alert('$loginSession');window.location = '../login.php';</script>";
-
         }
 
-        
-
+    
 ?>
 
 
