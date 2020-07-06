@@ -11,7 +11,7 @@ class Testfor extends TestCase
         $this->userArray[ $email ][ "password" ]  = $password;
     }
 
-    public function addUserData ( $email, $fullName, $address1, $address2, $city, $state, $zipcode ) {
+    public function addinfo ( $email, $fullName, $address1, $address2, $city, $state, $zipcode ) {
         $this->userArray[ $email ][ "fullName" ]  = $fullName;
         $this->userArray[ $email ][ "address1" ]  = $address1;
         $this->userArray[ $email ][ "address2" ]  = $address2;
