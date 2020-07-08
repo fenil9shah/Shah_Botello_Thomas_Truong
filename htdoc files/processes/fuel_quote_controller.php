@@ -10,7 +10,7 @@
         
     } 
 
-    class User{
+    class User1{
         public function get_user_name($user_id){
 
             $db = new DB();
@@ -27,9 +27,9 @@
             $db = new DB();
 
             //query to pull data of user
-            $userID_query = mysqli_query($db->link(),"SELECT id, fullName, addr1, city, 'state', zipcode FROM users WHERE id = $user_id");
+            $userID_query = mysqli_query($db->link(),"SELECT id, fullName, addr1, city, state, zipcode FROM users WHERE id = $user_id");
             $row = mysqli_fetch_array($userID_query);
-            $addr = $row['addr1'] . $row['city'] . $row['state'] . $row['zipcode'];
+            $addr = $row['addr1'] . " " . $row['city'] . ", " . $row['state'] . " " . $row['zipcode'];
 
             return $addr;
         }
@@ -38,17 +38,30 @@
 
     class Fuel_quote{  
         
-        public function validation_inputs($id, $user_id,$gallons_requested,$addr,$delivery_date,$suggested_price,$total_amount_due,$created_date){
-
+        public function validation_inputs(){
             $f_quote = new Fuel_quote();
 
+
+
             // Sanitize filterGallon_requested
-            $gallons_requested = filter_var(trim($gallons_requested), FILTER_SANITIZE_STRING);
+            //$gallons_requested = filter_var(trim($gallons_requested), FILTER_SANITIZE_STRING);
 
             // Sanitize delivery date
             //$delivery_date = filter_var(trim($delivery_date), FILTER_SANITIZE_STRING);
-            
+            //$timestamp = time();
+            //$dateCurrent = date("Y-m-d",$timestamp);
+
             $dateCurrent = date("Y-m-d");
+
+            $user_id = $_SESSION['id'];
+            $gallons_requested = $_POST['txtGallon_requested'];
+            $addr = $_POST['txtDeliverry_address'];
+            $delivery_date = $_POST['txtDelivery_date'];
+            $suggested_price = $_POST['txtSuggested_price'];
+            $total_amount_due = $_POST['txtTotal_due'];
+            $created_date = $dateCurrent;
+
+            print($dateCurrent);
 
             //check is it a number?
             if(filter_var($gallons_requested, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/[0-9\s]/")))){
@@ -56,12 +69,14 @@
                 if($gallons_requested > 0 && $gallons_requested<=999999999999999){
                     // Validate delivery date
                     if(filter_var($delivery_date, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"~^\d{4}-\d{2}-\d{2}$~")))){
-                        if($delivery_date > $dateCurrent)
-                        {
-                            //$f_quote->insert_fuel_quote($)
+                        //Make sure date input is not current or past
+                        if($delivery_date == $dateCurrent)
+                        {                            
+                            $f_quote->insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due, $delivery_date);
+                            echo "<a style='color:blue;'>Fuel quote send successful ! </a><br>";
                         }
                         else{
-                            echo "Invalid date<br>";
+                            echo "<a style='color:red;'>Invalid date</a><br>";
                         }
                             
                     } else{
@@ -76,23 +91,30 @@
             }
         }
 
-        public function insert_fuel_quote($user_id,$id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due,$created_date){
+        public function insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due,$created_date){
+            $created_date = date("Y-m-d");
+            $db = new DB();
+            $user = new User1();
 
+            //query to pull data of fuel_quotes table
+            $query = mysqli_query($db->link(), "INSERT INTO `fuel_quotes` (`userid`, `gallons_requested`, `delivery_date`, `suggested_price`, `total_amount_due`, `created_date`)
+                                                 VALUES ('$user_id','$gallons_requested','$delivery_date','$suggested_price','$total_amount_due','$created_date');
+
+            ");            
         }
         
         //Use to get fuel quotes of a user
         public function get_fuel_quote_history_by_user_id($user_id){
 
             $db = new DB();
-            $user = new User();
-
+            $user = new User1();
+            
+            echo "User ID   "."ID   "."Gallons requested    "."Delivery date    "."Suggested price  "."Total amount due  "."Created date    ";
             //query to pull data of fuel_quotes table
-            $query = mysqli_query($db->link(), "SELECT * FROM fuel_quotes WHERE userid = $user->getUser->user_id");
+            $query = mysqli_query($db->link(), "SELECT * FROM fuel_quotes WHERE userid = $user_id");
             foreach($query as $row){
-                $row = mysqli_fetch_array($query);
-                echo "User ID   "."ID   "."Gallons requested    "."Delivery date    "."Suggested price  "."Total amount due  "."Created date    ";
                 echo $row["userid"] . "    " .$row["id"] . "    " .$row["gallons_requested"] . "    " .
-                $row["delivery_date"] . "    " .$row["suggested_price"] . "    " .$row["total_amount_due"] . "    " .$row["created_date"];
+                $row["delivery_date"] . "    " .$row["suggested_price"] . "    " .$row["total_amount_due"] . "    " .$row["created_date"]."|";
             }
         }
     }  

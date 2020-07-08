@@ -28,6 +28,8 @@
     $password1 = $_POST['pass1'];
     $password2 = $_POST['pass2'];
 
+    $encryptedPass = md5($password1);
+
     
     // to check if username already exists in the database.
     $con = mysqli_connect("localhost", "root", "", "test");
@@ -46,7 +48,7 @@
     }
     else{
         // after checking everything is fine, insert into the database: username and password.
-        $result1 = "INSERT INTO `users`(`email`, `password`) VALUES ('$email','$password1')";
+        $result1 = "INSERT INTO `users`(`email`, `password`) VALUES ('$email','$encryptedPass')";
         if ($con->query($result1) === TRUE) {
             echo "<script type='text/javascript'>alert('New record created');window.location = '../login.php';</script>";
         } else {

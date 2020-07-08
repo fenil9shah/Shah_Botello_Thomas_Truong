@@ -9,13 +9,15 @@
 
     $user = new User();
     if($_SERVER["REQUEST_METHOD"]== "POST"){
-        $login = $user->login($_REQUEST['username'], $_REQUEST['password']);
-  //      echo "<script> alert('$login') </script>";
+        $email = $_REQUEST['username'];
+        $pass = $_REQUEST['password'];
+
+        $login = $user->login($email, $pass);
         if($login){
-            if ($user->checkCredentials($_REQUEST['username'], $_REQUEST['password']))
+            if ($user->checkCredentials($email, $pass))
                 header("location: ../clientProfileManage.php");
             else
-                header("location : ../fuel_quote.php");
+                header("location: ../fuel_quote.php");
         }
         else{
             echo "<script type='text/javascript'>alert('Login incorrect');window.location = '../login.php';</script>";

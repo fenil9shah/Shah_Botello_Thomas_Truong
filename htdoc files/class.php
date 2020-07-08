@@ -41,8 +41,9 @@ class User
     public  
   
     function login($email, $password) {  
-     //   $password = md5($password);  
-        $check = mysqli_query(mysqli_connect(HOST, USER, PASS, "test2"), "SELECT * from `users` where email='$email' and password='$password'");  
+        $password = md5($password);  
+        $password = substr($password, 0, 16);
+        $check = mysqli_query(mysqli_connect(HOST, USER, PASS, "test"), "SELECT * from `users` where email='$email' and password='$password'");  
         $data = mysqli_fetch_array($check);  
         $result = mysqli_num_rows($check);
         if ($result == 1) {  
@@ -55,9 +56,13 @@ class User
     }
 
     public function checkCredentials($email, $password){
-        $check = mysqli_query(mysqli_connect(HOST, USER, PASS, "test2"), "SELECT * from `users` where email='$email' and password='$password'");  
-        $data = mysqli_fetch_array($check);  
-        if ($data['fullname'] == NULL) {  
+        $password = md5($password);
+        $password = substr($password, 0, 16);
+        print($password);
+        $check = mysqli_query(mysqli_connect(HOST, USER, PASS, "test"), "SELECT * FROM `users` WHERE email='$email' and password='$password'");  
+        $data = mysqli_fetch_array($check); 
+        $dataCheck = $data['fullName'];
+        if (empty($dataCheck)) {  
             return true;  
         } else {  
             return false;  

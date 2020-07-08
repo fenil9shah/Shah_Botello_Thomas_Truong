@@ -3,14 +3,18 @@
     include_once 'processes/fuel_quote_controller.php';
     
     //init classes
-    $user = new User();
+    $user = new User1();
     $f_quote = new Fuel_quote();
 
+    $userID = $_SESSION['id'];
 
     //catch method POST
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-
+        $f_quote->validation_inputs();
+        $f_quote->get_fuel_quote_history_by_user_id($userID);
+        
     }
+
 ?>
 
 
@@ -35,8 +39,9 @@
             <div class="SectionInput">
                 <div class="Gallons">
                     User ID:
-                    <input type='number' id='txtUserID' name='txtUserID' value="2" readonly>
-                    
+                    <?php
+                        print($userID);
+                    ?>
                 </div>
                 <div class="Gallons">                  
                         Gallons Requested:
@@ -51,23 +56,24 @@
                 <div class="Address">
                     Delivery Address:
                     <?php 
-                        $user = new User();
-                        echo "<textarea type='text' style='width: 200px;' id='txtDeliverry_address' name='txtDeliverry_address' placeholder='" . $user->get_user_address(2) . "' cols='40' rows='3' readonly></textarea>";
+                        $user = new User1();
+                        echo "<textarea type='text' style='width: 200px;' id='txtDeliverry_address' name='txtDeliverry_address' placeholder='" . $user->get_user_address($userID) . "' cols='40' rows='3' readonly></textarea>";
                     ?>
                     
                 </div>
                 <div class="Delivery">
                     Delivery Date:
-                    <input type="date" id="txtDelivery_date" name="txtSuggested_price" required>
+                    <input type="date" id="txtDelivery_date" name="txtDelivery_date" required>
                     <script type="text/javascript">
                         function checkDateInput() {
                             var dateString = document.getElementById('txtDelivery_date').value;
                             var inputDate = new Date(dateString);
                             var today = new Date();
                             if ( inputDate < today ) { 
-                                $('#txtDelivery_date').after('<p>You cannot enter a date in the past!.</p>');
+                                $('txtDelivery_date').after('<p>You cannot enter a date in the past!.</p>');
                                 return false;
                             }
+                            alert(dateString);
                             return true;
                         }
                     </script>
