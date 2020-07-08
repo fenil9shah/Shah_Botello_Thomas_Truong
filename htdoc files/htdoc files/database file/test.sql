@@ -46,18 +46,15 @@ INSERT INTO `client_information` (`id`, `client_info_id`, `full_name`, `address1
 --
 
 CREATE TABLE `fuel_quotes` (
-  `id` int(6) NOT NULL,
-  `fuel_id` int(6) NOT NULL,
+  `userid` int(6) NOT NULL,
+  `id` int(6) NOT NULL AUTO_INCREMENT,
   `gallons_requested` int(15) NOT NULL,
   `delivery_date` date DEFAULT NULL,
-  `suggested_price` decimal(11,2) DEFAULT NULL,
-  `total_amount_due` float(11,2) DEFAULT NULL,
+  `suggested_price` int DEFAULT NULL,
+  `total_amount_due` int DEFAULT NULL,
   `created_date` date DEFAULT NULL,
-  `address1` varchar(100) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `state` varchar(2) NOT NULL,
-  `zipcode` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (id)
+);
 
 --
 -- Dumping data for table `fuel_quotes`
@@ -191,11 +188,6 @@ INSERT INTO `users` (`id`, `email`, `password`) VALUES
 ALTER TABLE `client_information`
   ADD PRIMARY KEY (`client_info_id`);
 
---
--- Indexes for table `fuel_quotes`
---
-ALTER TABLE `fuel_quotes`
-  ADD PRIMARY KEY (`fuel_id`);
 
 --
 -- Indexes for table `users`
@@ -213,11 +205,7 @@ ALTER TABLE `users`
 ALTER TABLE `client_information`
   MODIFY `client_info_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- AUTO_INCREMENT for table `fuel_quotes`
---
-ALTER TABLE `fuel_quotes`
-  MODIFY `fuel_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 
 --
 -- AUTO_INCREMENT for table `users`
