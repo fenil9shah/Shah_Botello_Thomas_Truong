@@ -9,7 +9,8 @@
 
     //catch method POST
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-
+        $f_quote->validation_inputs();
+        $f_quote->get_fuel_quote_history_by_user_id(2);
     }
 ?>
 
@@ -58,7 +59,7 @@
                 </div>
                 <div class="Delivery">
                     Delivery Date:
-                    <input type="date" id="txtDelivery_date" name="txtSuggested_price" required>
+                    <input type="date" id="txtDelivery_date" name="txtDelivery_date" required>
                     <script type="text/javascript">
                         function checkDateInput() {
                             var dateString = document.getElementById('txtDelivery_date').value;
