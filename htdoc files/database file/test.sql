@@ -19,16 +19,18 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `client_information`
 --
+CREATE DATABASE test;
+USE test;
 
 CREATE TABLE `client_information` (
-  `userid` int(6) NOT NULL,
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `gallons_requested` int(15) NOT NULL,
-  `delivery_date` date DEFAULT NULL,
-  `suggested_price` int DEFAULT NULL,
-  `total_amount_due` int DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  PRIMARY KEY (id)
+  `id` int(6) NOT NULL,
+  `client_info_id` int(6) NOT NULL,
+  `full_name` varchar(50) NOT NULL,
+  `address1` varchar(100) NOT NULL,
+  `address2` varchar(100) DEFAULT NULL,
+  `city` varchar(100) NOT NULL,
+  `state` varchar(2) NOT NULL,
+  `zipcode` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -44,33 +46,29 @@ INSERT INTO `client_information` (`id`, `client_info_id`, `full_name`, `address1
 --
 -- Table structure for table `fuel_quotes`
 --
-
 CREATE TABLE `fuel_quotes` (
   `userid` int(6) NOT NULL,
-  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `id` int(6) NOT NULL,
   `gallons_requested` int(15) NOT NULL,
   `delivery_date` date DEFAULT NULL,
-  `suggested_price` int DEFAULT NULL,
-  `total_amount_due` int DEFAULT NULL,
-  `created_date` date DEFAULT NULL,
-  PRIMARY KEY (id)
-);
-
+  `suggested_price` int(11) DEFAULT NULL,
+  `total_amount_due` int(11) DEFAULT NULL,
+  `created_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 --
 -- Dumping data for table `fuel_quotes`
 --
 
-INSERT INTO `fuel_quotes` (`id`, `fuel_id`, `gallons_requested`, `delivery_date`, `suggested_price`, `total_amount_due`, `created_date`, `address1`, `city`, `state`, `zipcode`) VALUES
-(2, 1, 1000, '2020-08-01', '60.00', 60000.00, '2020-02-04', '', '', '', ''),
-(2, 2, 2000, '2020-09-01', '50.00', 100000.00, '2020-06-01', '', '', '', ''),
-(3, 3, 3000, '2020-10-01', '40.00', 120000.00, '2020-01-01', '', '', '', ''),
-(3, 4, 4000, '2020-11-01', '90.00', 360000.00, '2020-07-04', '', '', '', ''),
-(4, 5, 1255, '2020-10-15', '2.43', 3049.65, '2020-07-07', '1053 Circle Drive', 'Houston', 'TX', '77032'),
-(5, 6, 296, '2020-09-01', '2.55', 754.80, '2020-07-07', '3706 Todds Lane', 'San Antonio', 'TX', '78205'),
-(5, 7, 300, '2021-01-14', '2.47', 741.00, '2020-07-08', '3706 Todds Lane', 'San Antonio', 'TX', '78205');
+INSERT INTO `fuel_quotes` (`userid`, `id`, `gallons_requested`, `delivery_date`, `suggested_price`, `total_amount_due`, `created_date`) VALUES
+(2, 1, 1000, '2020-08-01', '60.00', 60000.00, '2020-02-04'),
+(2, 2, 2000, '2020-09-01', '50.00', 100000.00, '2020-06-01'),
+(3, 3, 3000, '2020-10-01', '40.00', 120000.00, '2020-01-01'),
+(3, 4, 4000, '2020-11-01', '90.00', 360000.00, '2020-07-04'),
+(4, 5, 1255, '2020-10-15', '2.43', 3049.65, '2020-07-07'),
+(5, 6, 296, '2020-09-01', '2.55', 754.80, '2020-07-07'),
+(5, 7, 300, '2021-01-14', '2.47', 741.00, '2020-07-08');
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `states`
 --
@@ -165,18 +163,23 @@ INSERT INTO `testtable` (`testVar`) VALUES
 CREATE TABLE `users` (
   `id` int(6) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(16) NOT NULL
+  `password` varchar(16) NOT NULL,
+  `fullName` varchar(50) DEFAULT NULL,
+  `addr1` varchar(100) DEFAULT NULL,
+  `addr2` varchar(100) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `state` varchar(2) DEFAULT NULL,
+  `zipcode` int(9) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`) VALUES
-(2, 'admin@admin.test', 'test12345'),
-(3, 'test@test.com', '12345'),
-(4, 'billkemp@gmail.com', '12345'),
-(5, 'noahwalters@gmail.com', '12345');
+INSERT INTO `users` (`id`, `email`, `password`, `fullName`, `addr1`, `addr2`, `city`, `state`, `zipcode`) VALUES
+(2, 'admin@admin.test', 'test12345', 'The Admin Guy', '12357 Adminland', '', 'Earth', 'AL', 45681),
+(3, 'test@test.com', '12345', 'testman', '1234156swq', '', '0', '0', 78945),
+(4, 'billkemp@gmail.com', '12345', 'billkemp', '1053 Circle Drive', '', 'Houston', 'TX', 77032),
+(5, 'noahwalters@gmail.com', '12345', 'noahwalters', '3706 Todds Lane', '', 'San Antonio', 'TX', 78205);
 
 --
 -- Indexes for dumped tables
@@ -190,15 +193,19 @@ ALTER TABLE `client_information`
 
 --
 -- Indexes for table `fuel_quotes`
---
 
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+  
+--
+-- Indexes for table `fuel_quotes`
+--
+ALTER TABLE `fuel_quotes`
+  ADD PRIMARY KEY (`id`);
 
+--
 --
 -- AUTO_INCREMENT for dumped tables
 --
@@ -209,13 +216,13 @@ ALTER TABLE `users`
 ALTER TABLE `client_information`
   MODIFY `client_info_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- AUTO_INCREMENT for table `fuel_quotes`
---
-
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  
+  --
+ALTER TABLE `fuel_quotes`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
