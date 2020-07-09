@@ -21,14 +21,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `client_information` (
-  `id` int(6) NOT NULL,
-  `client_info_id` int(6) NOT NULL,
-  `full_name` varchar(50) NOT NULL,
-  `address1` varchar(100) NOT NULL,
-  `address2` varchar(100) DEFAULT NULL,
-  `city` varchar(100) NOT NULL,
-  `state` varchar(2) NOT NULL,
-  `zipcode` varchar(9) NOT NULL
+  `userid` int(6) NOT NULL,
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `gallons_requested` int(15) NOT NULL,
+  `delivery_date` date DEFAULT NULL,
+  `suggested_price` int DEFAULT NULL,
+  `total_amount_due` int DEFAULT NULL,
+  `created_date` date DEFAULT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
