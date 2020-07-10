@@ -85,9 +85,9 @@
                     echo"";
                 }                    
                 else
-                    echo "the amount of gallon requested must larger 0 and smaller 999,999,999,999,999<br>";
+                    echo "<a style='color:blue;'>the amount of gallon requested must larger 0 and smaller 999,999,999,999,999</a><br>";
             } else{
-                echo "Gallons requested must be a number!<br>";
+                echo "<a style='color:blue;'>Gallons requested must be a number!</a><br>";
             }
         }
 
