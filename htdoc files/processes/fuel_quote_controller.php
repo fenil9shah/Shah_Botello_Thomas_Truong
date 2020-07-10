@@ -107,15 +107,35 @@
         public function get_fuel_quote_history_by_user_id($user_id){
 
             $db = new DB();
-            $user = new User1();
+            $user = new User();
+
+            $fuel_history_array = array();//to store fuel_quote history of a user
+            $r = $c =0; // use for input array, r = row, c = column
             
-            echo "User ID   "."ID   "."Gallons requested    "."Delivery date    "."Suggested price  "."Total amount due  "."Created date    ";
+            //echo "User ID   "."ID   "."Gallons requested    "."Delivery date    "."Suggested price  "."Total amount due  "."Created date    ";
             //query to pull data of fuel_quotes table
             $query = mysqli_query($db->link(), "SELECT * FROM fuel_quotes WHERE userid = $user_id");
             foreach($query as $row){
-                echo $row["userid"] . "    " .$row["id"] . "    " .$row["gallons_requested"] . "    " .
-                $row["delivery_date"] . "    " .$row["suggested_price"] . "    " .$row["total_amount_due"] . "    " .$row["created_date"]."|";
+                //echo $row["userid"] . "    " .$row["id"] . "    " .$row["gallons_requested"] . "    " .
+                //$row["delivery_date"] . "    " .$row["suggested_price"] . "    " .$row["total_amount_due"] . "    " .$row["created_date"]."|";
+                $fuel_history_array[$r][$c++] = $row["userid"];
+                $fuel_history_array[$r][$c++] = $row["id"];
+                $fuel_history_array[$r][$c++] = $row["gallons_requested"];
+                $fuel_history_array[$r][$c++] = $row["delivery_date"];
+                $fuel_history_array[$r][$c++] = $row["suggested_price"];
+                $fuel_history_array[$r][$c++] = $row["total_amount_due"];
+                $fuel_history_array[$r][$c++] = $row["created_date"];
+                $c=0;
+                $r+=1;
             }
+            /*
+            for($i = 0; $i <5; $i++){
+                echo"<br>record number #".$i.":";
+                for($j = 0; $j <7; $j++){
+                    echo ",".$fuel_history_array[$i][$j];
+                }
+                echo"<br>";
+            }*/
         }
     }  
    
