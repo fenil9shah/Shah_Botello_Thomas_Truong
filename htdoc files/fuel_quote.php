@@ -90,6 +90,7 @@
                 <div class="Buttons">
                     <button type="submit">Submit</button>
                     <button type="reset">Reset</button>
+                    <button onclick="location.href='fuel_quote_history.php'"type="button">Show History</button>
                 </div>  
             </div>
         </form> 
