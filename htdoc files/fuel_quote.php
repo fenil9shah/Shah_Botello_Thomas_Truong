@@ -43,7 +43,7 @@
                         print($userID);
                     ?>
                 </div>
-                <div class="Gallons">                  
+                <div class="Gallons">
                         Gallons Requested:
                         <input type="number" size="15" id="txtGallon_requested" name="txtGallon_requested" min="0" max="999999999999999" placeholder="0.00" onfocus="this.placeholder = ''" onblur="calculateTotal()" required>
                         <script>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="Address">
                     Delivery Address:
-                    <?php 
+                    <?php
                         $user = new User1();
                         echo "<textarea type='text' style='width: 200px;' id='txtDeliverry_address' name='txtDeliverry_address' placeholder='" . $user->get_user_address($userID) . "' cols='40' rows='3' readonly></textarea>";
                     ?>
@@ -69,7 +69,7 @@
                             var dateString = document.getElementById('txtDelivery_date').value;
                             var inputDate = new Date(dateString);
                             var today = new Date();
-                            if ( inputDate < today ) { 
+                            if ( inputDate < today ) {
                                 $('txtDelivery_date').after('<p>You cannot enter a date in the past!.</p>');
                                 return false;
                             }
@@ -85,15 +85,16 @@
                 </div>
                 <div class="Total_input">
                     Total Amount Due:
-                    <input type="text" id="txtTotal_due" name="txtTotal_due" value="" readonly>                
+                    <input type="text" id="txtTotal_due" name="txtTotal_due" value="" readonly>
                 </div>
                 <div class="Buttons">
+                    <button type="submit">Get Quote</button> 
                     <button type="submit">Submit</button>
                     <button type="reset">Reset</button>
                     <button onclick="location.href='fuel_quote_history.php'"type="button">Show History</button>
-                </div>  
+                </div>
             </div>
-        </form> 
+        </form>
          
     </div>
     
