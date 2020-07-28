@@ -107,7 +107,7 @@
         public function get_fuel_quote_history_by_user_id($user_id){
 
             $db = new DB();
-            $user = new User();
+            $user = new User1();
 
             $fuel_history_array = array();//to store fuel_quote history of a user
             $r = $c =0; // use for input array, r = row, c = column
