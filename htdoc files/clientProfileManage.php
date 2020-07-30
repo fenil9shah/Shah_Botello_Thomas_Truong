@@ -56,7 +56,7 @@
                     <input type="text" id="city" name="city" maxlength="100" required="required"><br>
                     <br>
                     <label for="state">*State :</label>
-                    <select id="state" name="state">
+                    <select id="state" name="state" maxlength="2">
                         <option value="">Please select one:</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
@@ -112,7 +112,7 @@
                     </select>
                     <br><br>
                     <label for="zipcode">*Zipcode :</label>
-                    <input type="text" id="zipcode" name = "zipcode" pattern="[0-9]*" required="required" minlength="5" maxlength="9"><br><br>
+                    <input type="number" id="zipcode" name = "zipcode" pattern="[0-9]*" required="required" minlength="5" maxlength="9"><br><br>
                     <input type="submit" id="submit" value="Submit">
 
                 </form>
