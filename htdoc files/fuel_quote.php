@@ -88,7 +88,6 @@
                     <input type="text" id="txtTotal_due" name="txtTotal_due" value="" readonly>
                 </div>
                 <div class="Buttons">
-                    <button type="submit">Get Quote</button> 
                     <button type="submit">Submit</button>
                     <button type="reset">Reset</button>
                     <button onclick="location.href='fuel_quote_history.php'"type="button">Show History</button>

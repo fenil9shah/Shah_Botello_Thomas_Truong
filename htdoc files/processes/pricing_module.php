@@ -6,11 +6,11 @@
             echo"Call successed<br>";//Testing
 
             $db = new DB();//conection string to DB
-            $user = new User();
+            $user = new User1();
 
             $current_price_per_gallon =1.5; //current price per gallon  
 
-            $user_id = $_POST['txtUserID'];//get user ID============================================== Need help to take ID from session!
+            $user_id = $_SESSION['id'];//get user ID============================================== Need help to take ID from session!
             
             //calculate location_factor
             $check_in_state = ($user->get_user_state($user_id) == "TX")? true:false;//check if the user is in state or not

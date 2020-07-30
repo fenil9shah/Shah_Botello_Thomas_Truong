@@ -58,10 +58,10 @@ class User
     public function checkCredentials($email, $password){
         $password = md5($password);
         $password = substr($password, 0, 16);
-        print($password);
+       // print($password);
         $check = mysqli_query(mysqli_connect(HOST, USER, PASS, "test"), "SELECT * FROM `users` WHERE email='$email' and password='$password'");  
         $data = mysqli_fetch_array($check); 
-        $dataCheck = $data['fullName'];
+        $dataCheck = $data['client_info_ID'];
         if (empty($dataCheck)) {  
             return true;  
         } else {  

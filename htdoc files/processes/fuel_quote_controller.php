@@ -1,5 +1,6 @@
 
 <?php
+
     class DB    
     {
         function link()
@@ -16,7 +17,7 @@
             $db = new DB();
 
             //query to pull data of user
-            $userID_query = mysqli_query($db->link(),"SELECT id, fullName, addr1, city, 'state', zipcode FROM users WHERE id = $user_id");
+            $userID_query = mysqli_query($db->link(),"SELECT `full_name` FROM `client_information` WHERE `userID` = '$user_id'");
             $row = mysqli_fetch_array($userID_query);
             $username = $row['fullName'];
 
@@ -27,9 +28,9 @@
             $db = new DB();
 
             //query to pull data of user
-            $userID_query = mysqli_query($db->link(),"SELECT id, fullName, addr1, city, state, zipcode FROM users WHERE id = $user_id");
+            $userID_query = mysqli_query($db->link(),"SELECT `address1`, `city`, `state`, `zipcode` FROM `client_information` WHERE `userID` = '$user_id'");
             $row = mysqli_fetch_array($userID_query);
-            $addr = $row['addr1'] . " " . $row['city'] . ", " . $row['state'] . " " . $row['zipcode'];
+            $addr = $row['address1'] . " " . $row['city'] . ", " . $row['state'] . " " . $row['zipcode'];
 
             return $addr;
         }
