@@ -70,7 +70,7 @@
                     // Validate delivery date
                     if(filter_var($delivery_date, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"~^\d{4}-\d{2}-\d{2}$~")))){
                         //Make sure date input is not current or past
-                        if($delivery_date == $dateCurrent)
+                        if($delivery_date > $dateCurrent)
                         {                            
                             $f_quote->insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due, $delivery_date);
                             echo "<a style='color:blue;'>Fuel quote send successful ! </a><br>";
