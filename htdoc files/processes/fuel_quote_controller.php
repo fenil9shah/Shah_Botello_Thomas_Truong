@@ -24,6 +24,18 @@
             return $username;
         }
 
+        public function get_user_state($user_id){
+            $db = new DB();
+
+            //query to pull data of user
+            $userID_query = mysqli_query($db->link(),"SELECT `state` FROM `client_information` WHERE `userID` = '$user_id'");
+            $row = mysqli_fetch_array($userID_query);
+            $state = $row['state'];
+
+            return $state;
+
+        }
+
         public function get_user_address($user_id){
             $db = new DB();
 
@@ -74,7 +86,7 @@
                         if($delivery_date > $dateCurrent)
                         {                            
                             $f_quote->insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due, $delivery_date);
-                            echo "<a style='color:blue;'>Fuel quote send successful ! </a><br>";
+                            echo "<a style='color:blue;'>Fuel quote sent successfuly! </a><br>";
                         }
                         else{
                             echo "<a style='color:red;'>Invalid date</a><br>";

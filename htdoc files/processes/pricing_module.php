@@ -1,9 +1,11 @@
 <?php
 
-    class PricingModule{
-        public function get_suggested_price(){
+    include_once 'fuel_quote_controller.php';
 
-            echo"Call successed<br>";//Testing
+    class PricingModule{
+        public function get_suggested_price($gallons_requested){
+
+            //echo"Call successed<br>";//Testing
 
             $db = new DB();//conection string to DB
             $user = new User1();
@@ -22,7 +24,7 @@
             $rate_history_factor = ($check_fuel_quote_history)? 0.01 : 0;
 
             //calculate gallons_requested_factor
-            $gallons_requested = $_POST['txtGallon_requested'];
+            // $gallons_requested = $_POST['txtGallon_requested'];
             $gallons_requested_factor = ($gallons_requested > 1000)? 0.02:0.03; 
 
             $company_profit_factor = 0.1; // always 10%
@@ -33,10 +35,10 @@
             //calculate for suggested price
             $suggested_price = $current_price_per_gallon + $margin;
 
-            echo "Suggested price: ",$suggested_price;//Testing
+           // echo "Suggested price: ",$suggested_price;//Testing
 
             //change value for input tag in front end
-            $_POST["txtSuggested_price"] = $suggested_price;
+            return $suggested_price;
         }
     }
 

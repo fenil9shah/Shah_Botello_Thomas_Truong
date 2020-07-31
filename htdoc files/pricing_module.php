@@ -37,7 +37,7 @@
     
         public $companyProfitFactor = 0.10;
     
-          public function __construct(int $id, float $gallonsRequested,string $dateRequested)
+        public function __construct(int $id, float $gallonsRequested,string $dateRequested)
         {
             $this->gallonsRequested = $gallonsRequested;
             $this->dateRequested = $dateRequested;
