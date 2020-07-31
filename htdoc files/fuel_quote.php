@@ -38,12 +38,6 @@
         
             <div class="SectionInput">
                 <div class="Gallons">
-                    User ID:
-                    <?php
-                        print($userID);
-                    ?>
-                </div>
-                <div class="Gallons">
                         Gallons Requested:
                         <input type="number" size="15" id="txtGallon_requested" name="txtGallon_requested" min="0" max="999999999999999" placeholder="0.00" onfocus="this.placeholder = ''" onblur="calculateTotal()" required>
                         <script>
