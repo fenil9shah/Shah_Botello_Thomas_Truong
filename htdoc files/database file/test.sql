@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 30, 2020 at 09:26 PM
+-- Generation Time: Aug 01, 2020 at 05:57 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `test`
 --
+CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `test`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `client_information`
 --
 
+DROP TABLE IF EXISTS `client_information`;
 CREATE TABLE `client_information` (
   `userID` int(6) NOT NULL,
   `client_info_id` int(6) NOT NULL,
@@ -48,7 +51,8 @@ INSERT INTO `client_information` (`userID`, `client_info_id`, `full_name`, `addr
 (7, 19, 'efg', 'qgr', '', 'qerg', 'AL', '123456'),
 (8, 20, 'we', 'are', 'the', 'champions', 'TX', '789456'),
 (9, 21, 'ewqr', 'wer', '', 'wer', 'CO', '123456'),
-(10, 22, '66', '123', '123', '123', 'AL', '123456');
+(10, 22, '66', '123', '123', '123', 'AL', '123456'),
+(11, 23, 'adam', '123 streetprk', '67', 'kingston', 'NY', '12401');
 
 -- --------------------------------------------------------
 
@@ -56,13 +60,14 @@ INSERT INTO `client_information` (`userID`, `client_info_id`, `full_name`, `addr
 -- Table structure for table `fuel_quotes`
 --
 
+DROP TABLE IF EXISTS `fuel_quotes`;
 CREATE TABLE `fuel_quotes` (
   `userid` int(6) NOT NULL,
   `id` int(6) NOT NULL,
   `gallons_requested` int(15) NOT NULL,
   `delivery_date` date DEFAULT NULL,
-  `suggested_price` int(11) DEFAULT NULL,
-  `total_amount_due` int(11) DEFAULT NULL,
+  `suggested_price` decimal(65,3) DEFAULT NULL,
+  `total_amount_due` decimal(65,2) DEFAULT NULL,
   `created_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -71,15 +76,16 @@ CREATE TABLE `fuel_quotes` (
 --
 
 INSERT INTO `fuel_quotes` (`userid`, `id`, `gallons_requested`, `delivery_date`, `suggested_price`, `total_amount_due`, `created_date`) VALUES
-(2, 1, 1000, '2020-08-01', 60, 60000, '2020-02-04'),
-(2, 2, 2000, '2020-09-01', 50, 100000, '2020-06-01'),
-(3, 3, 3000, '2020-10-01', 40, 120000, '2020-01-01'),
-(3, 4, 4000, '2020-11-01', 90, 360000, '2020-07-04'),
-(4, 5, 1255, '2020-10-15', 2, 3050, '2020-07-07'),
-(5, 6, 296, '2020-09-01', 3, 755, '2020-07-07'),
-(5, 7, 300, '2021-01-14', 2, 741, '2020-07-08'),
-(7, 8, 789, '2020-07-31', 2, 1578, '2020-07-30'),
-(8, 9, 123, '2020-07-31', 2, 246, '2020-07-30');
+(2, 1, 1000, '2020-08-01', '60.000', '60000.00', '2020-02-04'),
+(2, 2, 2000, '2020-09-01', '50.000', '100000.00', '2020-06-01'),
+(3, 3, 3000, '2020-10-01', '40.000', '120000.00', '2020-01-01'),
+(3, 4, 4000, '2020-11-01', '90.000', '360000.00', '2020-07-04'),
+(4, 5, 1255, '2020-10-15', '2.000', '3050.00', '2020-07-07'),
+(5, 6, 296, '2020-09-01', '3.000', '755.00', '2020-07-07'),
+(5, 7, 300, '2021-01-14', '2.000', '741.00', '2020-07-08'),
+(7, 8, 789, '2020-07-31', '2.000', '1578.00', '2020-07-30'),
+(8, 9, 123, '2020-07-31', '2.000', '246.00', '2020-07-30'),
+(11, 10, 1535, '2020-08-02', '1.725', '2647.88', '2020-08-01');
 
 -- --------------------------------------------------------
 
@@ -87,6 +93,7 @@ INSERT INTO `fuel_quotes` (`userid`, `id`, `gallons_requested`, `delivery_date`,
 -- Table structure for table `states`
 --
 
+DROP TABLE IF EXISTS `states`;
 CREATE TABLE `states` (
   `state` varchar(30) NOT NULL,
   `abbreviation` varchar(3) DEFAULT NULL
@@ -154,6 +161,7 @@ INSERT INTO `states` (`state`, `abbreviation`) VALUES
 -- Table structure for table `testtable`
 --
 
+DROP TABLE IF EXISTS `testtable`;
 CREATE TABLE `testtable` (
   `testVar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -174,6 +182,7 @@ INSERT INTO `testtable` (`testVar`) VALUES
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(6) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -189,7 +198,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `client_info_ID`) VALUES
 (7, 'admin@admin.test', 'e10adc3949ba59ab', 19),
 (8, 'test@test.test', 'e10adc3949ba59ab', 20),
 (9, 'w@w.w', 'e10adc3949ba59ab', 21),
-(10, 'q@1', 'e10adc3949ba59ab', 22);
+(10, 'q@1', 'e10adc3949ba59ab', 22),
+(11, 'adam@gmail.com', 'e10adc3949ba59ab', 23);
 
 --
 -- Indexes for dumped tables
@@ -222,19 +232,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `client_information`
 --
 ALTER TABLE `client_information`
-  MODIFY `client_info_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `client_info_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `fuel_quotes`
 --
 ALTER TABLE `fuel_quotes`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
