@@ -51,7 +51,7 @@
 
     class Fuel_quote{  
         
-        public function validation_inputs(){
+        public function validation_inputs($total, $suggested){
             $f_quote = new Fuel_quote();
 
 
@@ -70,8 +70,8 @@
             $gallons_requested = $_POST['txtGallon_requested'];
             $addr = $_POST['txtDeliverry_address'];
             $delivery_date = $_POST['txtDelivery_date'];
-            $suggested_price = $_POST['txtSuggested_price'];
-            $total_amount_due = $_POST['txtTotal_due'];
+            //$suggested_price = $_POST['txtSuggested_price'];
+           // $total_amount_due = $_POST['txtTotal_due'];
             $created_date = $dateCurrent;
 
             print($dateCurrent);
@@ -85,7 +85,7 @@
                         //Make sure date input is not current or past
                         if($delivery_date > $dateCurrent)
                         {                            
-                            $f_quote->insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested_price,$total_amount_due, $delivery_date);
+                            $f_quote->insert_fuel_quote($user_id,$gallons_requested,$delivery_date,$suggested,$total, $delivery_date);
                             echo "<a style='color:blue;'>Fuel quote sent successfuly! </a><br>";
                         }
                         else{

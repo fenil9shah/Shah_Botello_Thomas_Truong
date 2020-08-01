@@ -18,7 +18,10 @@
 
     //catch method POST
     if ($_SERVER["REQUEST_METHOD"]=="POST" and isset($_POST['submit'])){
-        $f_quote->validation_inputs();
+        $suggested = $price->get_suggested_price($gallons_requested);
+        $total = $gallons_requested * $suggested;
+
+        $f_quote->validation_inputs($total, $suggested);
         $f_quote->get_fuel_quote_history_by_user_id($userID);
 
         $gallons_requested = 0.00;
